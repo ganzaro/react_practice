@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
+import App from './demos/xst/switch/App';
+// import App from './demos/xst_modals/demo-d/App';
+// import App from './demos/courses/App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

@@ -1,0 +1,17 @@
+
+https://dev.to/codingdive/series/3554
+https://dev.to/codingdive/state-machine-advent-invoking-a-state-machine-in-react-1nm7
+
+Swithc
+    2 states
+        active
+        inactive
+
+    1 event
+        TOGGLE
+
+
+
+
+
+
