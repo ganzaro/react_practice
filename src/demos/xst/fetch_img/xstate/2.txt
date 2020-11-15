@@ -1,0 +1,55 @@
+
+
+// 2 State-driven development
+This approach puts states first and events second
+Instead of the user being able to trigger any event, 
+leaving us scrambling to catch them all and write logic to handle them, 
+we give the user a state containing a group of events.
+While we’re in this state, the user can trigger any event in this group, but no more.
+
+
+defining our machine by calling XState’s Machine function and passing in a config. 
+    The config is just a JavaScript object. 
+    It has a states property, which defines what states our machine can be in.
+
+defining four states: 
+    ready, fetching, success, and error. 
+    
+    Our machine can only be in one of these states at a time. 
+    Within each state, we define what events can occur while the machine is in that state. 
+    
+    If the machine is in the 
+        ready state and the 
+            BUTTON_CLICKED event occurs, 
+                we’ll transition to the fetching state.
+
+
+--
+React component. 
+We call XState’s useMachine hook and pass in our machine. 
+    This returns two values:
+        current, a variable we can use to query the machine’s state
+        send, a function that can send an event to the machine
+
+
+advantages 
+    1. We have named states
+
+    2. More confidence in how our component will behave
+        the first thing we do when an event is triggered is check what state we’re in.
+        Now, within this state, we check what the event does. Events are scoped to states: if an event is triggered and it’s not defined with the current state, it doesn’t do anything.
+        greater control over what the user is able to do.
+
+    3. Separation of concerns
+        All our state logic is independent from the UI implementation. 
+        can copy paste machine to Vue 
+
+    4. Easier and more accurate testing
+
+    5. Visualization
+
+
+
+
+
+

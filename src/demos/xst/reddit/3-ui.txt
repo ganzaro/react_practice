@@ -1,0 +1,8 @@
+
+Implementing the UI
+
+From here, your app logic is self-contained in the redditMachine and can be used however you want, 
+    in any front-end framework, such as React, Vue, Angular, Svelte, etc.
+
+Within the chosen UI framework, components provide natural isolation and encapsulation of logic. 
+

@@ -1,0 +1,41 @@
+
+https://blog.logrocket.com/state-driven-interfaces-with-xstate/
+https://codesandbox.io/s/event-driven-development-74vzm?from-embed=&file=/src/fetchImage.js
+
+Our component will have a single button. When clicked, a request for an image is made. 
+    If the request is successful, the image is displayed. 
+    If the request fails, an error message is displayed. 
+
+
+// 1 event-driven development. We center our development around events. 
+
+We use React and the useState Hook to manage our state, creating multiple boolean flags
+    isFetching, isSuccess, and isError.
+
+disadvantages 
+    1. The component should never be in both the fetching state and the error state at the same time. 
+    But with this setup, it’s possible. 
+    Our component only has four intended states: the default state, fetching, success, and error.
+        we have eight different combinations. 
+        Our component is relatively simple right now, but its a  shaky foundation
+        . But if we get new requirements and it grows in complexity
+
+    2. No separation of concerns
+        the state logic is embedded in the UI implementation. 
+        The code that is responsible for deciding what should be rendered 
+        is entangled with the code that determines how it should be rendered.
+
+        entangled, more work to migrate to  Vue.js or Angular
+
+New requirement 
+    we need to account for users who press the button multiple times. 
+    These users are making multiple requests and putting needless load on the server. 
+    To prevent this from happening, we have added a check in our click handler, 
+    which will prevent more than one request being sent.
+
+
+
+
+
+
+

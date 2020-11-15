@@ -1,0 +1,18 @@
+
+
+organize logic and make smaller, more manageable machines.
+
+Consider two machines:
+
+    A redditMachine, which is the app-level machine, responsible for rendering the selected subreddit component
+    A subredditMachine, which is the machine responsible for loading and displaying its specified subreddit
+
+
+//
+a lot of the logic in the original redditMachine was moved to the subredditMachine. 
+That allows us to isolate logic to their specific domains and make the redditMachine more general, 
+without being concerned with subreddit loading logic:
+
+
+
+

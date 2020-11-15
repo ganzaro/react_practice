@@ -1,0 +1,58 @@
+
+https://xstate.js.org/docs/tutorials/reddit.html#modeling-the-app
+
+create an app that displays a selected subreddit's posts. The app should be able to:
+    Have a predefined list of subreddits that the user can select from
+    Load the selected subreddit
+    Display the last time the selected subreddit was loaded
+    Reload the selected subreddit
+    Select a different subreddit at any time
+
+The app logic and state can be modeled with a single app-level machine, as well as invoked child machines for modeling the logic of each individual subreddit. 
+
+
+// 1 start with a single machine.
+
+Modeling the Reddit App
+two top-level states:
+    'idle' - no subreddit selected yet (the initial state)
+    'selected' - a subreddit is selected
+
+store initial subreddit state - context
+
+    const redditMachine = Machine({
+        id: 'reddit',
+        initial: 'idle',
+        context: {
+            subreddit: null // none selected
+        },
+        states: {
+            idle: {},
+            selected: {}
+        }
+    });
+
+--
+event  transition for a 'SELECT' event, which signals that a subreddit was selected by the user. 
+
+    const selectEvent = {
+        type: 'SELECT', // event type
+        name: 'reactjs' // subreddit name
+    };
+
+
+whenever the 'SELECT' event occurs, the machine will:
+    transition to its child '.selected' state (notice the dot, which indicates a relative target)
+    assign event.name to the context.subreddit
+
+
+    on: {
+        SELECT: {
+            target: '.selected',
+            actions: assign({
+                subreddit: (context, event) => event.name
+            })
+        }
+    }
+
+//

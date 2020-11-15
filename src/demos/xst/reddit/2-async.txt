@@ -1,0 +1,46 @@
+
+#
+Async Flow
+
+When a subreddit is selected (that is, when the machine is in the 'selected' state due to a 'SELECT' event), the machine should start loading the subreddit data. To do this, we invoke a Promise that will resolve with the selected subreddit data:
+
+function invokeFetchSubreddit(context) {
+  const { subreddit } = context;
+
+  return fetch(`https://www.reddit.com/r/${subreddit}.json`)
+    .then(response => response.json())
+    .then(json => json.data.children.map(child => child.data));
+}
+
+const redditMachine = Machine({
+  /* ... */
+  states: {
+    idle: {},
+    selected: {
+      invoke: {
+        id: 'fetch-subreddit',
+        src: invokeFetchSubreddit
+      }
+    }
+  },
+  on: {
+    /* ... */
+  }
+});
+
+
+//
+Specifying an id on the invoke config object allows clearer debugging and visualization, as well as the ability to send events directly to an invoked entity by its id.
+
+//
+When the 'selected' state is entered, invokeFetchSubreddit(...) will be called with the current context and event (not used here) 
+    and start fetching subreddit data from the Reddit API. 
+    
+    The promise can then take two special transitions:
+        onDone - taken when the invoked promise resolves
+        onError - taken when the invoked promise rejects
+
+
+We can make 3 child states that represent when the subreddit is 
+    'loading', 'loaded' or 'failed'
+

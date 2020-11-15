@@ -1,0 +1,14 @@
+
+Using Actors
+
+The machines we've created work, and fit our basic use-cases. However, suppose we want to support the following use-cases:
+    When a subreddit is selected, it should load fully, even if a different one is selected (basic "caching")
+    The user should see when a subreddit was last updated, and have the ability to refresh the subreddit.
+
+A good mental model for this is the Actor model, 
+    where each individual subreddit is its own "actor" that controls its own logic based on events, whether internal or external
+
+an actor is an entity that has its own logic/behavior, 
+    and it can receive and send events to other actors.
+
+
